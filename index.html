@@ -22,20 +22,75 @@
         * { box-sizing: border-box; }
         
         body {
+            /* Varsayılan: KARANLIK MOD */
             background-color: #121212; 
             color: #ffffff;            
-            
-            /* YENİ FONT BURADA AKTİF EDİLDİ */
             font-family: 'Outfit', sans-serif; 
-            
             text-align: center;
             margin: 0;
             padding-top: 50px;
             padding-bottom: 120px;
             user-select: none;
             -webkit-user-select: none;
+            
+            /* Renk değişimi yumuşak olsun */
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
-        
+
+        /* --- AYDINLIK MOD (LIGHT MODE) --- */
+        body.light-mode {
+            background-color: #f4f4f4; 
+            color: #121212;            
+        }
+        body.light-mode .hakkimda-kutusu { color: #444444; }
+        body.light-mode .hakkimda-kutusu b { color: #000000; }
+        body.light-mode .Hedef-kutusu {
+            background-color: #ffffff; 
+            border-color: #cccccc;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+        body.light-mode .alt-imza {
+            background-color: #ffffff;
+            color: #000000;
+            border-top: 2px solid #228B22;
+        }
+        /* Light Mode'da VSCO Butonunu Siyah Yap */
+        body.light-mode .vsco-tarz {
+            color: #121212;
+            border-color: #121212;
+        }
+        body.light-mode .vsco-tarz:hover {
+            background-color: #121212;
+            color: white;
+        }
+        body.light-mode .unvan { color: #555555; }
+
+        /* --- TEMA DEĞİŞTİRME BUTONU --- */
+        .tema-butonu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: 2px solid #228B22;
+            color: #228B22;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tema-butonu:hover {
+            background-color: #228B22;
+            color: white;
+            transform: rotate(30deg); 
+        }
+
         /* --- FOTOĞRAF --- */
         img {
             width: 170px; height: 170px; object-fit: cover; border-radius: 15px;
@@ -49,50 +104,42 @@
         /* --- BAŞLIKLAR --- */
         h1 {
             color: #228B22; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; /* Outfit zaten geniş, spacing'i biraz kıstık */
+            /* text-transform: uppercase;  <-- BU SATIRI SİLDİK! ARTIK SEN NASIL YAZARSAN ÖYLE GÖRÜNÜR */
+            letter-spacing: 1px; 
             margin-bottom: 5px; 
-            font-size: 32px; /* Font güzel olduğu için biraz büyüttük */
-            font-weight: 800; /* Ekstra Kalın (Dolgunluk için) */
+            font-size: 32px; 
+            font-weight: 800; 
         }
         .unvan { 
-            color: #cccccc; 
-            font-size: 17px; margin-bottom: 25px; 
-            font-weight: 500; /* Biraz daha tok dursun */
+            color: #cccccc; font-size: 17px; margin-bottom: 25px; font-weight: 500; 
         }
         
         /* --- HAKKIMDA KUTUSU --- */
         .hakkimda-kutusu {
-            max-width: 600px; 
-            margin: 0 auto;   
-            padding: 0 20px;
-            line-height: 1.6; 
-            color: #aaaaaa;   
-            font-size: 16px;
-            font-weight: 400;
+            max-width: 600px; margin: 0 auto; padding: 0 20px;
+            line-height: 1.6; color: #aaaaaa; font-size: 16px; font-weight: 400; transition: color 0.5s ease;
         }
-        .hakkimda-kutusu b {
-            color: white; font-weight: 700;
-        }
+        .hakkimda-kutusu b { color: white; font-weight: 700; transition: color 0.5s ease; }
 
         /* --- KUTU --- */
         .Hedef-kutusu {
              border: 1px solid #333; display: inline-block; padding: 20px; border-radius: 10px;
              background-color: #1a1a1a; margin: 30px auto; text-align: left; max-width: 90%;
+             transition: background-color 0.5s ease, box-shadow 0.5s ease;
         }
         
         /* --- BUTONLAR --- */
         .buton-genel {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
             width: 200px; height: 50px; text-decoration: none; border-radius: 50px;
-            font-weight: 800; /* Buton yazıları artık daha kalın ve tok */
-            letter-spacing: 0.5px; font-size: 15px; transition: all 0.3s ease;
+            font-weight: 800; letter-spacing: 0.5px; font-size: 15px; transition: all 0.3s ease;
             margin: 10px; color: white; border: 2px solid white; background-color: transparent;
-            font-family: 'Outfit', sans-serif; /* Butonlara da işledik */
+            font-family: 'Outfit', sans-serif;
         }
-        .buton-genel svg { width: 24px; height: 24px; fill: currentColor; } /* İkonları azıcık daha büyüttüm */
+        .buton-genel svg { width: 24px; height: 24px; fill: currentColor; }
 
         .vsco-tarz:hover { background-color: white; color: black; box-shadow: 0 0 25px rgba(255, 255, 255, 0.6); transform: translateY(-3px); }
+        
         .github-tarz { background-color: #24292e; border: 2px solid white; }
         .github-tarz:hover { background-color: white; color: #24292e; box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); transform: translateY(-3px); }
 
@@ -108,6 +155,7 @@
             position: fixed; left: 0; bottom: 0; width: 100%; background-color: #0f0f0f;
             border-top: 2px solid #228B22; color: #888; padding: 15px 0;
             font-size: 12px; font-weight: 500; letter-spacing: 0.5px; z-index: 9999;
+            transition: background-color 0.5s ease;
         }
 
         @media (max-width: 600px) {
@@ -117,6 +165,10 @@
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+    <button class="tema-butonu" onclick="temaDegistir()">
+        ☀️
+    </button>
 
     <img src="ben.jpg" alt="Fotoğraf">
     
@@ -155,6 +207,16 @@
     </div>
 
     <script>
+        function temaDegistir() {
+            document.body.classList.toggle("light-mode");
+            var buton = document.querySelector(".tema-butonu");
+            if (document.body.classList.contains("light-mode")) {
+                buton.innerHTML = "🌙"; 
+            } else {
+                buton.innerHTML = "☀️"; 
+            }
+        }
+
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.onkeydown = function(e) {
             if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) { return false; }
